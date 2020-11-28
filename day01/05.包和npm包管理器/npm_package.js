@@ -38,3 +38,7 @@
             1.npm remove xxx
             （从当前的工程，移除指定的包）
 * */
+
+// 使用npm下载下来的第三方库
+const jq = require('jquery')
+// console.log(jq.toString())

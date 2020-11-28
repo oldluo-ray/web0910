@@ -25,3 +25,18 @@
  *
  *   极其特殊的：process.nextTick，能在任意阶段优先被执行。
  * */
+
+setTimeout(function() {
+  console.log('settimeout-----')
+})
+// 表示立即执行函数
+setImmediate(function() {
+  console.log('setImmediate-----')
+})
+
+// 表示立即执行函数 特点: 在轮询过程中,优先触发
+process.nextTick(function() {
+  console.log('Process.nextTick----')
+})
+
+console.log('主线程')

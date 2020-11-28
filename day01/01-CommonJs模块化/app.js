@@ -14,8 +14,13 @@
  * 2.如果直接个module.exports赋值,只需要写一次,如果写多次,后面的会覆盖前面的
  *
  */
-const module1 = require('./module1')
-const module2 = require('./module2')
-// module1()
-console.log(module1)
-console.log(module2)
+// const module1 = require('./module1')
+// const module2 = require('./module2')
+// // module1()
+// console.log(module1)
+// console.log(module2)
+
+// 测试
+// 使用uniq
+const uniq = require('uniq')
+console.log(uniq)
