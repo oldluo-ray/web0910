@@ -18,3 +18,23 @@
  *            --end ：读取文件结束的位置，默认是highWaterMark
  *            --highWaterMark：每次读取数据的大小（水管的粗细），默认值 64（字节byte） * 1024
  * */
+const fs = require('fs')
+
+// 创建读取流
+const rs = fs.createReadStream('./music.mp3', {
+  // 实际上就是相当于控制流的粗细
+  highWaterMark: 4 * 1024 * 1024 // 这个配置项的单位是字节
+})
+// 监听读取流开启
+rs.on('open', () => {
+  console.log('读取流开启了')
+})
+// 监听读取流关闭
+rs.on('close', () => {
+  console.log('读取流结束了')
+})
+
+// 获取读取的数据, 这个回调会被执行多次
+rs.on('data', data => {
+  console.log(data)
+})

@@ -12,3 +12,11 @@
  *
  */
 
+const fs = require('fs')
+
+fs.readFile('./hello.txt', (err, data) => {
+  // err 错误信息
+  // data就是读取到的数据 默认是buffer对象
+  if (err) console.log(err)
+  console.log(data.toString())
+})

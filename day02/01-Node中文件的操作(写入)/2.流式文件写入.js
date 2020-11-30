@@ -18,3 +18,28 @@
  *                 --autoClose ：自动关闭，当数据写入完毕后，自动关闭操作完的文件，默认值true
  *                 --start：写入文件的起始点（开始位置）
  * */
+
+//引入fs
+const fs = require('fs')
+// 创建写入流(在流创建出来的时候,流就开启了)
+const ws = fs.createWriteStream('./demo.txt', {
+  start: 10 //写入时的开始位置
+})
+
+// 监听流的开启
+ws.on('open', () => {
+  console.log('写入流开启了')
+})
+
+// 监听流关闭
+ws.on('close', () => {
+  console.log('写入流关闭了')
+})
+
+// 开始写入
+ws.write('沛华,渣男锡纸烫')
+ws.write('沛华,渣男锡纸烫,哈哈')
+ws.write('海静,渣男, 没头发')
+
+// // 写入完毕(写入完毕之后,流会自动关闭)
+ws.end()
