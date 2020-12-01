@@ -8,6 +8,4 @@ const teaModel = require('../model/model')
   console.log(11111)
 
   // 对数据库,具体的增删改查的代码
-
-  
 })()

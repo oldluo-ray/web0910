@@ -14,7 +14,7 @@ app.get('/', (request, response) => {
   response.send('<h3>express返回的数据</h3>')
 })
 4. 监听post请求
-app.post('/demo',(request,response)=>{
+app.post('/',(request,response)=>{
   response.body 获取post请求上传的数据,但是默认拿不到,需要使用中间件配合
   response.send('接收到了post请求')
 })
@@ -24,4 +24,21 @@ app.listen(5000, err => {
   if (err) console.log(err)
   else console.log('服务器启动成功')
 })
- */
+*/
+const express = require('express')
+
+const app = express()
+
+app.get('/', (request, response) => {
+  console.log(request.query)
+  response.send('<h3>express响应的数据</h3>')
+})
+
+// app.get('/test',()=>{
+
+// })
+
+app.listen(5000, err => {
+  if (err) console.log(err)
+  else console.log('express服务器开启成功')
+})
