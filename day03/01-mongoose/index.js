@@ -65,20 +65,67 @@ mongoose.connection.once('open', () => {
 
   // 往students集合中添加一个文档(一条数据)
   // 直接创建文档,并且直接存储到集合
-  stu_model.create(
-    {
-      id: '444444',
-      name: 'haha',
-      age: 19,
-      info: '人很帅,家里很有钱,但是没有头发',
-      hobby: ['吃饭', '睡觉', '打豆豆']
-    },
-    (err, data) => {
-      // 添加信息完毕之后会调用,
-      //   err是错误信息
-      //   data就是刚刚添加进去的那条文档
-      if (err) console.log(err)
-      else console.log(data)
-    }
-  )
+  // stu_model.create(
+  //   {
+  //     id: '444444',
+  //     name: 'haha',
+  //     age: 19,
+  //     info: '人很帅,家里很有钱,但是没有头发',
+  //     hobby: ['吃饭', '睡觉', '打豆豆']
+  //   },
+  //   (err, data) => {
+  //     // 添加信息完毕之后会调用,
+  //     //   err是错误信息
+  //     //   data就是刚刚添加进去的那条文档
+  //     if (err) console.log(err)
+  //     else console.log(data)
+  //   }
+  // )
+
+  // find() 方法查询数据,查询成功data拿到的是一个数组,数组里面存储了所有的数据(对象),
+  // 如果没有查找到任何数据,返回的依然是一个数组,是一个空数组
+  // stu_model.find({ id: '66666' }, (err, data) => {
+  //   console.log(err)
+  //   console.log('======')
+  //   console.log(data)
+  // })
+
+  // stu_model.find({ age: {$gt: 18} },{name:1,_id: 0}, (err, data) => {
+  //   console.log(err)
+  //   console.log('======')
+  //   console.log(data)
+  // })
+  //  stu_model.findOne({ age: {$gt: 18} },{name:1,_id: 0}, (err, data) => {
+  //   console.log(err)
+  //   console.log('======')
+  //   console.log(data)
+  // })
+
+  // stu_model.updateOne({ name: 'zs' }, { $set: { age: 28 } }, (err, data) => {
+  //   console.log('======')
+  //   console.log(err)
+  //   console.log('=======')
+  //   console.log(data)
+  // })
+
+  // stu_model.updateMany({ name: 'zs' }, { $set: { age: 38 } }, (err, data) => {
+  //   console.log('======')
+  //   console.log(err)
+  //   console.log('=======')
+  //   console.log(data)
+  // })
+
+  // stu_model.deleteOne({ name: 'zs' }, (err, data) => {
+  //   console.log('======')
+  //   console.log(err)
+  //   console.log('=======')
+  //   console.log(data)
+  // })
+
+  stu_model.deleteMany({ name: 'haha' }, (err, data) => {
+    console.log('======')
+    console.log(err)
+    console.log('=======')
+    console.log(data)
+  })
 })
