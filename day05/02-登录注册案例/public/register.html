@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="POST">
+        邮箱:  <input type="text" name="email"><span></span> <br>
+        密码: <input type="password" name="psw"><span></span>  <br>
+        确认密码: <input type="password" name="repsw"><span></span>  <br>
+        用户名: <input type="text" name="username"><span></span> <br>
+        <input type="submit" value="登录">
+     </form>
+
+     <script>
+         // 1. 获取元素
+         const email = document.querySelector('input[name=email]')
+         const psw = document.querySelector('input[name=psw]')
+         const repsw = document.querySelector('input[name=repsw]')
+         const username = document.querySelector('input[name=username]')
+         const registerBtn = document.querySelector('input[type=submit]')
+         
+         // 2. 当表单项失焦点的时候就应该去校验
+         email.onblur = function(){
+             // 做表单校验
+             // 获取表单项的值
+             let value = this.value.trim();
+             // 验证用户输入的值,是否符合规则
+            //  xxxx@xxx.com/cn
+             let reg = /^\w+@\w+\.(com|cn)$/
+             // //校验之后的结果
+             let result = reg.test(value)
+             //判断如果校验不通过,就展示错误信息
+             if(!result){
+                // 校验不通过
+                this.nextElementSibling.innerText = '请输入正确的邮箱'
+             }else{
+                 //校验通过
+                 this.nextElementSibling.innerHTML = ''
+             }
+         }
+         psw.onblur = function(){
+             // 做表单校验
+             // 获取表单项的值
+             let value = this.value.trim();
+             // 验证用户输入的值,是否符合规则
+            //  xxxx@xxx.com/cn
+             let reg = /^\w{6,8}$/
+             // //校验之后的结果
+             let result = reg.test(value)
+             //判断如果校验不通过,就展示错误信息
+             if(!result){
+                // 校验不通过
+                this.nextElementSibling.innerText = '请输入6~8位的密码'
+             }else{
+                 //校验通过
+                 this.nextElementSibling.innerHTML = ''
+             }
+         }
+         username.onblur = function(){
+             // 做表单校验
+             // 获取表单项的值
+             let value = this.value.trim();
+             // 验证用户输入的值,是否符合规则
+            //  xxxx@xxx.com/cn
+             let reg = /^[\u4e00-\u9fa5]{2,}$/
+             // //校验之后的结果
+             let result = reg.test(value)
+             //判断如果校验不通过,就展示错误信息
+             if(!result){
+                // 校验不通过
+                this.nextElementSibling.innerText = '请输入真实名称'
+             }else{
+                 //校验通过
+                 this.nextElementSibling.innerHTML = ''
+             }
+         }
+    
+         repsw.onblur = function(){
+              // 做表单校验
+             // 获取表单项的值
+             let value = this.value.trim();
+            
+        
+             //判断如果确认密码和密码是否相同
+             if(value !== psw.value){
+                // 校验不通过
+                this.nextElementSibling.innerText = '请确认密码'
+             }else{
+                 //校验通过
+                 this.nextElementSibling.innerHTML = ''
+             }
+         }
+    
+      // 3. 控制登录按钮
+      registerBtn.onclick = function(e){
+          if(true){
+              e.preventDefault()
+          }
+      }
+    </script>
+</body>
+</html>
