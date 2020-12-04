@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.创建正则对象
+        // 1.1 new 构造函数 
+        // const 正则对象 = new RegExp('正则规则','参数')
+        // 1.2 正则字面量
+        // const 正则对象 =  /正则规则/参数
+
+        // 2.
+        // \r 表示回车 \n 表示换行 都是空白符
+        // 正则操作字符串 
+        // let str = 'h'
+        // 正则对象.test(要验证的字符串) 返回是true,表示符合条件. 否则就是不符合条件
+        // 普通字符
+        // let reg = /a/ //字符串中只要包含字符a就可以
+        // // 特殊字符
+        // reg = /\d/ // 字符串中只要包含数字即可
+        // reg = /\D/ // 字符串中只要包含非数字即可
+        // reg = /\w/ // 字符串中只要包含数字,字母或下划线即可
+        // reg = /\W/ // 字符串中只要包含非数字,非字母或非下划线即可
+        // reg = /\s/ // 字符串中只要包含空白符即可
+        // reg = /\S/ // 字符串中只要包含非空白符即可
+        // reg = /./ // 字符串中只要包含非换行符即可
+        // reg = /^a/ // 字符串中只要以a开头即可
+        // reg = /a$/ // 字符串中只要以a结尾即可
+        // reg = /^abc$/ // 表示当前的字符串只能是abc
+
+        // // 限定符
+        // reg = /^a*$/ //表示字符串中有0个或多个a
+        // reg = /^a+$/ //表示字符串中有1个或多个a
+        // reg = /^a?$/ //表示字符串中有0个或1个a
+        // reg = /^a{3}$/ //表示字符串中必须是3个a
+        // reg = /^a{3,}$/ //表示字符串中至少3个a
+        // reg = /^a{3,5}$/ //表示字符串中至少3个a,最多5个a
+        // // 其他特殊字符
+        // // [] 只占一个字符的位置
+        // reg = /^[abc]$/ //表示字符串中只能有一个字符,这个字符可以是abc中任意一个
+        // reg = /^[^abc]$/ //表示字符串中只能有一个字符,但是这个字符不可以是abc中任何一个
+        // reg = /^abc\.efg$/ //表示字符串中只能有一个字符,但是这个字符不可以是abc中任何一个
+        // reg = /^gr(a|c)ey$/ //表示字符串中第一个是g, 第二个是r,第三个是a或者是c,第四个是e,第五个是y
+        // reg = /^[\u4e00-\u9fa5]$/ //表示字符串中第一个是g, 第二个是r,第三个是a或者是c,第四个是e,第五个是y
+        // reg = /^[A-Za-z]$/ //表示字符串中只能是大写或小写的英文字母
+
+        
+        // let result = reg.test(str)
+        // console.log(result)
+
+        // 正则提取
+        // let str = "张三：1000123，李四：5000，王五：8000。";
+        // const result = str.match(/\d+/g)  // 注意: 在提取的时候,不要写^$
+        // console.log(result)
+        // 正则对象.exec(字符串) 这个方法比较鸡肋,知道即可
+
+        // 正则替换
+        // let str = "abc,efg,123，abc,123，a";
+        // console.log(str.replace(/，|,/g,'-'))
+
+
+        // 注意点: 
+
+        // let reg = /^\d$/
+        // 注意: 如果使用完整写法,定义正则对象. \d需要写成\\d
+        // let reg = new RegExp('^\\d$')
+        // console.log(reg.test('4'))
+
+        // 分组
+        // let reg = /^\d{3}\.\d{3}\.\d{3}\.\d{3}\.\d{3}$/;
+        // let reg = /^\d{3}(\.\d{3}){4}$/;
+        // const result = reg.test('123.345.456.012.789')
+        // console.log(result)
+
+        // let dateStr = '2016-1-5';
+        // let reg = /^(\d{4})-(\d{1,2})-\d{1,2}$/;
+        // const result = reg.test(dateStr)
+        // // console.log(result);
+        // if(result){
+        //     console.log(RegExp.$1)
+        //     console.log(RegExp.$2)
+        //     console.log(RegExp.$3)
+        // }
+
+        // let reg = /^a$/ig
+        // console.log(reg.test('A')); 
+    </script>
+</body>
+</html>
