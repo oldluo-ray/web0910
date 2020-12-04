@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="http://localhost:5000/register" method="POST">
         邮箱:  <input type="text" name="email"><span></span> <br>
         密码: <input type="password" name="psw"><span></span>  <br>
         确认密码: <input type="password" name="repsw"><span></span>  <br>
@@ -73,7 +73,6 @@
          email.onblur = validator(emailObj) 
          psw.onblur = validator(pswObj)
          username.onblur = validator(userObj)
-    
          repsw.onblur = function(){
               // 做表单校验
              // 获取表单项的值
@@ -90,10 +89,10 @@
              }
          }
     
-      // 3. 控制登录按钮
-      registerBtn.onclick = function(e){
-          if(!(emailObj.flag&&pswObj.flag&&userObj.flag&&repswFlag))e.preventDefault()
-      }
+        // 3. 控制登录按钮
+    //     registerBtn.onclick = function(e){
+    //       if(!(emailObj.flag&&pswObj.flag&&userObj.flag&&repswFlag))e.preventDefault()
+    //    }
     </script>
 </body>
 </html>
