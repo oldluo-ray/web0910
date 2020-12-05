@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="http://localhost:5000/login" method="POST">
+       邮箱:  <input type="text" name="email"><span></span> <br>
+       密码: <input type="password" name="psw"> <span></span> <br>
+       <input type="submit" value="登录">
+    </form>
+    <script>
+        // 1. 获取元素
+        const email = document.querySelector('input[name=email]')
+        const psw = document.querySelector('input[name=psw]')
+        const loginBtn = document.querySelector('input[type=submit]')
+
+        // 定义一些变量,来存储,表单项验证是否通过的标记
+        let emailObj = {
+            flag: false,
+            rules: /^\w+@\w+\.(com|cn)$/,
+            err: '请输入正确的邮箱地址'
+        }
+        let pswObj = {
+            flag: false,
+            rules: /^\w{6,8}$/,
+            err: '请输入6~8位密码'
+        }
+        
+        // 2. 当表单项失焦点的时候就应该去校验
+        function validator (options){
+            // 注意: 此时return的这个函数才是真正的的事件处理函数
+           return function(){
+                // 做表单校验
+            // 获取表单项的值
+            let value = this.value.trim();
+            // 验证用户输入的值,是否符合规则
+           //  xxxx@xxx.com/cn
+            let reg = options.rules
+            // //校验之后的结果
+            let result = reg.test(value)
+            //判断如果校验不通过,就展示错误信息
+            if(!result){
+               // 校验不通过
+               this.nextElementSibling.innerText = options.err
+               options.flag = false
+              
+            }else{
+                //校验通过
+                this.nextElementSibling.innerHTML = ''
+                options.flag = true
+            }
+           }
+        }
+        email.onblur = validator(emailObj) 
+        psw.onblur = validator(pswObj)
+       
+       // 3. 控制登录按钮
+       loginBtn.onclick = function(e){
+         if(!(emailObj.flag&&pswObj.flag))e.preventDefault()
+      }
+   </script>
+</body>
+</html>
