@@ -39,3 +39,14 @@ router.get('/userCenter', (req, res) => {
 })
 
 module.exports = router
+
+// 1. 下载ejs
+// 2. 配置ejs
+// 3. 定义模板中的html结构
+// 4. 需要配置访问个人中心的路由(get)
+// 5. 个人中心路由中, 渲染模板: res.render('userCenter', { username })
+// 6. 登录成功之后
+//     res.cookie('username', username) 让浏览器存储一个cookie数据
+//     res.redirect('个人中心的页面')
+// 7. 回头把用户名传入到模板里面, <%= username%>
+// 8.在个人中心的路由里面,判断一下,从req.cookies里面能不能拿到username,如果能拿到,直接渲染个人中心.如果没有,就重定向到登录页面
