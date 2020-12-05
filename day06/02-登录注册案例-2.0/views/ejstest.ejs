@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        <%- name%>
+    </h1>
+    <!-- 写一个条件渲染 -->
+    <% if(age>=18){ %>
+    <h2>可以找富婆</h2>
+    <% }else{%>
+    <h2>不可以找富婆</h2>
+    <%}%>
+
+    <!-- 渲染列表 -->
+    <ul>
+        <% for(var i = 0; i < hobby.length; i++ ){%>
+         <li><%- hobby[i] %></li>
+        <% }%>
+    </ul>
+
+    <!-- 
+        总结: 
+
+        1. ejs中只会解析<%%>里面的内容.这个语法外面的内容,写成什么样,就输出什么
+        2. <%% 内容 %%> 内容部分可以直接写js,默认不往页面上输出内容,只是会执行 
+        3. 如果要输出内容 <%%- 内容 %%> 或者 是 <%%= 内容 %%>
+        注意:- 会解析html标签, = 不会解析html标签. 常用 = , 因为-不安全
+     -->
+
+     <%- tag %>
+     <%= tag %>
+</body>
+</html>

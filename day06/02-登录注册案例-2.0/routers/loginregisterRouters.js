@@ -26,7 +26,11 @@ router.post('/login', async (req, res) => {
   // console.log(user)
   if (user) {
     // 登录成功
-    res.send('登录成功')
+    // res.send('登录成功')
+    // 让浏览器去存储一个cookie
+    res.cookie('username', user.username, {maxAge: 1000 * 60 * 60 * 24})
+    res.redirect('http://localhost:5000/userCenter')
+
   } else {
     // 登录失败
     res.send('账号或密码错误,请求重新输入')
