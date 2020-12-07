@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮-发送ajax-jq</button>
+  
+    
+    <!-- <script src="http://localhost:5000/jquery-1.12.4.js"></script> -->
+    <!-- 注意: 如果写的是相对路径,那么浏览器发请求的时候,会自动拼接成一个绝对路径.这个绝对路径是当前文件的http://localhost:5000/路径/相对地址 -->
+    <script src="./jquery-1.12.4.js"></script>
+
+    <script>
+        $('#btn').on('click',()=>{
+            // jq中提供了一个ajax函数,封装了xmlhttprequest发送请求的哪些api.所以可以直接使用ajax帮助我们方便的发送ajax请求
+            $.ajax({
+                type: 'post' ,// 不写默认是get请求
+                url: 'http://localhost:5000/test1', //请求的路径
+                data: { //不管是get还是post,都是都过data属性,上传数据
+                    info: '今天天气不错'
+                },
+                dataType: 'json', //期望后台返回的数据类型. 如果返回的真的是json格式的字符串,jq底层会自动帮我们将js的字符串转成json对象,
+                timeout: 3000, //超时时间,单位是毫秒
+                beforeSend: ()=>{
+                    // 请求发送之前的回调,如果这个里面return false, 则请求不会发送. return true, 才会发送请求
+                    console.log('请求之前')
+                    return true
+                },
+                success: (data) => {
+                    // 请求响应成功,调用的回调
+                    // data就是返回的数据
+                    console.log(data)
+                },
+                error: (xhr) =>{
+                    // 请求错误的时候,会触发. xhr底层发送请求的xmlhttprequest对象
+                    console.log(xhr)
+                },
+                complete: () => {
+                    // 请求响应完成
+                    // 不管是成功还是失败,都是调用
+                    console.log('完成')
+                }
+            })
+
+        })
+    </script>
+</body>
+</html>

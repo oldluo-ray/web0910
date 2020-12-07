@@ -8,7 +8,7 @@
 <body>
     <button id="btn">按钮-发送ajax-get请求</button>
     <button id="btn1">按钮-发送ajax-post请求</button>
-
+    
     <script>
 
         const btn = document.getElementById('btn')
@@ -63,7 +63,9 @@
                     // 获取响应主体
                     console.log(xhr.responseText); // 返回响应主体中的信息,是一个字符串
 
-
+                    // 如果后台返回的是json,应该将字符串转成js对象更容易操作
+                    const result = JSON.parse(xhr.responseText)
+                    console.log(result)
                 }
             }
 

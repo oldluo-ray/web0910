@@ -5,14 +5,21 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/test', (req, res) => {
-  setTimeout(() => {
-    res.send('响应')
-  }, 3000)
-  console.log(req.query)
+  let arr = [{ name: 'zs', age: 18 }, { name: 'ls', age: 20 }]
+  const arrStr = JSON.stringify(arr)
+
+  // req.query ==> {callback: getData}
+  const callback = req.query.callback
+
+  res.send(callback + '(' + arrStr + ')') // getData([{ name: 'zs', age: 18 }, { name: 'ls', age: 20 }])
 })
 
 app.post('/test', (req, res) => {
-  res.send('响应')
+  let arr = [{ name: 'zs', age: 18 }, { name: 'ls', age: 20 }]
+  //   setTimeout(() => {
+  res.send(arr)
+  //   }, 4000)
+
   console.log(req.body)
 })
 
