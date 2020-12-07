@@ -25,7 +25,8 @@
 
   app.use(cookieParser())
   // 使用session和将数据存储到数据库的中间件
-  app.use(session({
+  app.use(
+    session({
       name: 'id', //设置cookie的键
       secret: 'atguigu', //参与加密的字符串（又称签名）
       saveUninitialized: false, //是否为每次请求都设置一个cookie用来存储session的id

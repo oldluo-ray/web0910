@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const userModel = require('../model/model')
 
+//导入md5加密的方法
+const md5 = require('md5')
+
 // 定义接收用户注册的请求的路由
 router.post('/register', async (req, res) => {
   // console.log(req.body)
@@ -10,7 +13,7 @@ router.post('/register', async (req, res) => {
   // 记住: model对象的crud方法,返回的都是promise
   await userModel.create({
     email,
-    psw,
+    psw: md5(psw),
     username
   })
 
@@ -22,7 +25,7 @@ router.post('/login', async (req, res) => {
   // 获取用户上传的数据
   let { email, psw } = req.body
   // 去数据库中查询,看是否有这个账户
-  const user = await userModel.findOne({ email, psw })
+  const user = await userModel.findOne({ email, psw: md5(psw) })
   // console.log(user)
   if (user) {
     // 登录成功
@@ -31,7 +34,6 @@ router.post('/login', async (req, res) => {
     // res.cookie('username', user.username, {maxAge: 1000 * 60 * 60 * 24})
     req.session.userid = user._id
     res.redirect('http://localhost:5000/userCenter')
-
   } else {
     // 登录失败
     res.send('账号或密码错误,请求重新输入')

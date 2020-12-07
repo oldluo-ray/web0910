@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮-发送ajax-get请求</button>
+    <button id="btn1">按钮-发送ajax-post请求</button>
+
+    <script>
+
+        const btn = document.getElementById('btn')
+
+        btn.onclick = function(){
+            // 发送ajax请求
+            // 1. 创建实例对象
+            const xhr = new XMLHttpRequest()
+            // 2. 设置请求行
+            // xhr.open('请求方式','请求的路径')
+            xhr.open('get','http://localhost:5000/test?name=zs&age=18')
+            // 3. 设置请求头 但是由于是get请求,所以不需要设置请求头
+            // 4. 设置请求体,并发送请求 
+            // send()方法实参的位置就是请求体的内容,但是由于是get请求,所以可以不写,也可以直接写一个null
+            xhr.send()
+
+
+            console.log(123)
+        }
+    
+    
+        btn1.onclick = function(){
+            // 发送ajax请求post 
+            // 1. 创建实例对象 
+            const xhr = new XMLHttpRequest()
+            // 2. 设置请求行
+            xhr.open('post', 'http://localhost:5000/test')
+            // 3. 设置请求头 由于post请求有请求主体,所以需要我们添加一个请求头,声明一下请求主体中的数据格式
+            xhr.setRequestHeader('content-type',"application/x-www-form-urlencoded")
+            // 4. 设置请求主体并且发送请求
+            xhr.send('name=zs&age=18')
+        }
+    </script>
+</body>
+</html>
