@@ -35,11 +35,39 @@
             // 1. 创建实例对象 
             const xhr = new XMLHttpRequest()
             // 2. 设置请求行
+            // console.log(xhr.readyState)
             xhr.open('post', 'http://localhost:5000/test')
+            // console.log(xhr.readyState)
             // 3. 设置请求头 由于post请求有请求主体,所以需要我们添加一个请求头,声明一下请求主体中的数据格式
             xhr.setRequestHeader('content-type',"application/x-www-form-urlencoded")
             // 4. 设置请求主体并且发送请求
-            xhr.send('name=zs&age=18')
+            xhr.send('name=zs&age=18') 
+
+            // 接收响应
+            // 注意: onreadystatechange只监听了readystate2,3,4的变化
+            xhr.onreadystatechange = function(){
+                // console.log(xhr.readyState)
+                if(xhr.readyState === 4){
+                    // 注意: 响应完成了,不代表是成功的
+                    // 进入到这里才表示这次请求和响应完成
+                    // 获取响应行的数据,最终的也是获取状态码的值,所以一般都值获取状态码
+                    console.log('响应行的状态码: ', xhr.status)
+
+                    // 获取响应头的信息
+                    // xhr.getAllResponseHeaders() 获取响应头中所有的信息
+                    // xhr.getResponseHeader('键') 获取响应头中指定的信息
+                    // console.log(xhr.getAllResponseHeaders());
+                    // console.log(xhr.getResponseHeader('content-type'));
+
+
+                    // 获取响应主体
+                    console.log(xhr.responseText); // 返回响应主体中的信息,是一个字符串
+
+
+                }
+            }
+
+
         }
     </script>
 </body>
