@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id='btn'>jq实现jsonp</button>
+
+    <script src="./jquery-1.12.4.js"></script>
+
+    <script>
+        $('#btn').on('click',()=>{
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost:5000/test',
+                dataType: 'jsonp',// 只要dataType的值是jsonp就可以执行jsonp跨域请求
+                success: (data)=>{
+                    console.log(data)
+                }
+            })
+        })
+    </script>
+</body>
+</html>

@@ -23,6 +23,10 @@ app.post('/test', (req, res) => {
   console.log(req.body)
 })
 
+app.post('/cors', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*')
+  res.send('数据')
+})
 app.listen(5000, err => {
   if (err) console.log(err)
   else console.log('服务器启动成功')

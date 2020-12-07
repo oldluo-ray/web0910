@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn" >按钮-发送ajax-cors</button>
+
+
+    <script>
+        btn.onclick = function(){
+
+            const xhr = new XMLHttpRequest()
+            xhr.open('post','http://localhost:5000/cors')
+            xhr.send()
+
+            btn.disabled = true
+
+            xhr.onreadystatechange = () =>{
+                if(xhr.readyState === 4){
+                    btn.disabled = false
+                    console.log(xhr.responseText)
+                }
+            }
+        }
+
+        /**
+         * 
+         *  cors是比jsonp新的解决跨域的一种方式: 
+         *  优点: 
+         *  1. post/get请求都可以
+         *  2. 前端啥都不用干,发请求就可以
+         * 
+         *  缺点: 有兼容性问题: ie10+才支持
+         *    
+         * 
+         * 
+         * 
+         * */
+    </script>
+</body>
+</html>
