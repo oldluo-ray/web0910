@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #F7F7F7;
+    }
+    
+    h3 {
+      text-align: center;
+    }
+    
+    .chatbox {
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
+      border: 1px solid #CCC;
+      background-color: #FFF;
+      border-radius: 5px;
+    }
+    
+    .messages {
+      height: 350px;
+      padding: 20px 40px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #CCC;
+      overflow: scroll;
+    }
+    
+    .messages h5 {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+    
+    .messages p {
+      font-size: 18px;
+      margin: 0;
+    }
+    
+    .self {
+      text-align: right;
+    }
+    
+    .other {
+      text-align: left;
+    }
+    
+    .form {
+      height: 150px;
+    }
+    
+    .form .input {
+      height: 110px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    
+    .form .btn {
+      height: 40px;
+      box-sizing: border-box;
+      border-top: 1px solid #CCC;
+    }
+    
+    .form textarea {
+      display: block;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border: none;
+      resize: none;
+      outline: none;
+      font-size: 20px;
+    }
+    
+    .form input {
+      display: block;
+      width: 100px;
+      height: 30px;
+      margin-top: 5px;
+      margin-right: 20px;
+      float: right;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>高级智能机器人</h3>
+  <div class="chatbox">
+    <!-- 聊天内容 -->
+    <div class="messages">
+      <!-- <div class="self">
+        <h5>我说</h5>
+        <p>你好</p>
+      </div>
+      <div class="other">
+        <h5>对方说</h5>
+        <p>你好</p>
+      </div> -->
+    </div>
+    <div class="form">
+      <div class="input">
+        <textarea></textarea>
+      </div>
+      <div class="btn">
+        <input type="button" value="发送" id='btn'>
+      </div>
+    </div>
+  </div>
+
+  <script src="../jquery-1.12.4.js"></script>
+
+  <script>
+    // 1. 给发送按钮注册点击事件
+    $('.btn').on('click',()=>{
+        // 2. 获取文本域的内容
+        const value = $('textarea').val().trim()
+
+        // 健壮性的判断 - 如果没有输入内容,就return
+        if(!value) return
+
+        // 3. 展示我说的内容
+        // console.log($('<div></div'))
+        const $div = $('<div></div').addClass('self').html('<h5>我说</h5><p>'+value+'</p>')
+        
+        $('.messages').append($div)
+
+        // 让元素展示在可视区
+        $div[0].scrollIntoView()
+
+        //清空输入框
+        $('textarea').val('')
+
+        // 4. 发送请求
+        $.ajax({
+          url: 'http://www.tuling123.com/openapi/api',
+          type: 'post',
+          data:{
+            key:'40a7d87143cd4801bed929665a441668',
+            info:value,
+            userid: 335220
+          },
+          dataType: 'json',
+          success:(data)=>{
+            console.log(data)
+
+            if(data.code === 100000){
+              // 表示返回的就是一个文本,添加到聊天窗口即可
+              const $div = $('<div></div').addClass('other').html('<h5>女神说</h5><p>'+data.text+'</p>')
+        
+                $('.messages').append($div)
+
+            $div[0].scrollIntoView()   
+
+            }else if(data.code === 200000){
+
+                // 表示返回的就是一个有文本和链接,添加到聊天窗口即可
+                const $div = $('<div></div').addClass('other').html('<h5>女神说</h5><p>'+data.text+'</p>'+'<a href='+data.url+'>图片地址</a>')
+                  $('.messages').append($div)
+
+            $div[0].scrollIntoView()   
+            }
+
+                 
+          }
+        })
+
+
+    })
+  </script>
+</body>
+
+</html>
