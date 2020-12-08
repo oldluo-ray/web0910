@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul">
+       
+    </ul>
+    <!-- 1. 引入template.js -->
+    <script src="template-web.js"></script>
+    <!-- 2. 准备模板 
+        type="text/html" 告诉js引擎,不要执行里面的代码
+        id 模板的唯一标识符 为了找到模板
+    -->
+    <script type="text/html" id="tmp1">
+        {{each arr}}
+            <li>
+                <h3>{{$value.name}}</h3>
+                <p>{{$value.age}}</p>
+                <ul>
+                    {{each}}
+                    <li></li>
+                    {{/each}}
+                </ul>
+            </li>
+        {{/each}}
+    </script>
+    <script>
+        const xhr = new XMLHttpRequest()
+        xhr.open('get', 'http://localhost:5000/test')
+        xhr.send()
+
+        xhr.onreadystatechange = () => {
+            if(xhr.readyState === 4){
+                if(xhr.status === 200){
+                    const result = xhr.responseText
+                    console.log(result)
+                    let arr = JSON.parse(result)
+
+
+                    // 调用art-template的template方法,根据模板是数据,得到一个拼接好的字符串
+                    const str = template('tmp1', {arr})
+                    console.log(str)
+                    // console.log(str)
+                    ul.innerHTML = str
+                    
+
+                }
+            }
+        }
+    </script>
+
+
+</body>
+</html>
