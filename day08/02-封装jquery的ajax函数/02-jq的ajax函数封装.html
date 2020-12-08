@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <script>
+        // 目标: 模仿jq中的ajax函数,封装一个自己的ajax函数
+
+        // $.ajax({
+        //     url, // 请求地址
+        //     type,  //请求方式  默认是get
+        //     data, // 上传的数据,不管是get还是post,都在data中定义
+        //     timeout, // 超时时间
+        //     dataType, // 期望返回的数据类型 json/text
+        //     success, // 成功的回调
+        //     error, //失败的回调
+        //     complete, //完成的回调
+        //     beforeSend // 请求发送之前的回调
+        // })
+        
+
+        // 封装函数: 关注三要素
+        // 函数名  根据函数的作用,起一个见名知义的名字
+        // 参数  对象,对象中配置了参数
+        // 返回值  由于代码中封装的是异步操作,所以写返回值也没有用. 忽略返回值
+        
+        function ajax(options){
+            // 1. 判断函数是否传入了参数,并且传入的参数应该是一个对象
+            if(!options || typeof options !== 'object') return 
+
+            let {url, type, data,timeout,dataType,complete,success,error,beforeSend} = options
+            // 2. options的url也是一个必填项,如果不写,后面的代码就不执行
+            if(!url) return
+
+            // 判断是否传入请求方式,传入就按传入的方式去请求,如果没有写,默认使用get
+            type = type || 'get'
+
+            // 3.创建实例对象
+            const xhr = new XMLHttpRequest()
+            // 设置超时时间 单位是毫秒
+            xhr.timeout = timeout || 3000 
+            // 4.先判断是否有data
+            if(data){
+                data = getData(data)
+            }
+
+            // 5.如果是get请求,参数拼接在url后面,如果是post请求,不需要拼接,加入到请求主体中
+            if(type === 'get' && data){
+                // 往url中拼接参数,否则就不拼接
+                // 假设data就是一个键值对的字符串
+                url += '?'+ data  
+                data = null
+            }
+            // 6. 设置请求行
+            xhr.open(type, url)  
+            
+            // 7. 如果是post请求,才设置请求头
+            if(type === 'post'){
+                xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
+            }
+
+            // 请求之前的 回调
+            const isSend = beforeSend ? beforeSend() : true
+
+            // 8. 设置请求主体,并发送请求
+            isSend&&xhr.send(data)
+            // 9.响应的代码
+            xhr.onreadystatechange = function(){
+
+                if(xhr.readyState === 4){
+                    // 表示响应完成
+                    complete&&complete()
+
+                    if(xhr.status === 200){
+                        //表示成功
+                        //判断,如果dataType的值是json,就将数据转成对象,然后再传入到成功的回调函数中
+                        if(dataType === 'json'){
+                            const result = JSON.parse(xhr.responseText)
+                            success&&success(result)
+                        }else{
+                            success&&success(xhr.responseText)
+                        }                  
+                    }else{
+                        // 表示请求失败
+                        error&&error()
+                    }
+                }
+            }
+        }
+    
+    
+    
+        // 由于传入的数据data是一个对象,但是真正发送请求的时候,不管是get还是post数据都要写成键值对的形式,所以需要将data对象转成一个字符串,并且将最后得到的结果返回出去
+        function getData(data){
+            //判断如果data没有传,或data传入的不是对象,就什么都不做
+            if(!data || typeof data !== 'object') return 
+
+            // 进行拼接字符串
+            // let str = '' //注意: 如果不给str赋值为空字符串,那么后续拼接的时候,字符串其那面会出现一个undefined.
+            // 由于直接拼接字符串,内存会产生大量的无用的字符串,所以一般不会直接拼接,而是使用数组完成
+            let arr = []
+            for(let k in data){
+                arr.push(`${k}=${data[k]}`) 
+            }
+            return arr.join('&')
+        }
+
+        // 测试ajax请求
+        btn.onclick = function(){
+            ajax({
+                url: 'http://localhost:5000/test',
+                type: 'post',
+                data: {
+                    name: 'zs',
+                    age: 18
+                },
+                // timeout: 1000,
+                dataType: 'json',
+                success:(data)=>{
+                    console.log(data)
+                },
+                error:()=>{
+                    console.log('请求发生错误')
+                },
+                complete:() => {
+                    console.log('请求完成了')
+                   
+                },
+                beforeSend:()=>{
+                    console.log('请求之前')
+                    return true
+                }
+            })
+        }
+    </script>
+</body>
+</html>
