@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        btn.onclick = async function(){
+            // get请求
+            // const res = await axios.get('http://localhost:5000/test?name=zs&age=8')
+            // console.log(res)
+
+            // post请求
+            // 注意: axios通过post请求上传的数据,会自动将数据转成json格式
+            // const res = await axios.post('http://localhost:5000/test',{
+            //     name: 'ls',
+            //     age: 90
+            // })
+
+
+            // axios方法
+            // const res = await axios({
+            //     method: 'get',
+            //     url: 'http://localhost:5000/test',
+            //     // 注意: 如果是get请求,要传的参数,写在params这个配置项中
+            //     params: {
+            //         name: 'haha'
+            //     }
+            // })
+            // const res = await axios({
+            //     method: 'post',
+            //     url: 'http://localhost:5000/test',
+            //     // 注意: 如果是get请求,要传的参数,写在params这个配置项中
+            //     // 其他的任何方式的请求,要传的参数都是写在data这个配置项中
+            //     data: {
+            //         name: '嘿嘿'
+            //     }
+            // })
+            // console.log(res)
+
+
+            // 并发多个请求
+            function fn1(){
+                return axios({
+                        method: 'get',
+                        url: 'http://localhost:5000/test',
+                        // 注意: 如果是get请求,要传的参数,写在params这个配置项中
+                        params: {
+                            name: 'haha'
+                        }
+                })
+            }
+
+            function fn2(){
+                return axios({
+                        method: 'post',
+                        url: 'http://localhost:5000/test',
+                        data: {
+                            name: '123'
+                        }
+                })
+            }
+            
+            // 当两个请求都成功了, res就可以获取到数据
+            const res = await axios.all([fn1(),fn2()])
+            console.log(res)
+        }
+       
+    </script>
+</body>
+</html>
