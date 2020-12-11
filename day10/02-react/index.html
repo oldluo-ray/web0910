@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 根标签,通过react创建出来的结构,都放在这个根标签里面 -->
+    <div id="root"></div>
+    <!-- 这个包是react核心包,提供了一个React对象(组件,一些方法) -->
+    <script src="js/react.development.js"></script>
+    <!-- 这个包是用来写页面的react包 ReactDOM 提供了操作网页的方法-->
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+
+    <script type="text/babel">
+            // 写js代码:  这是原始写法
+        //    const h3 =  React.createElement('h3', {id: 'box'},'子节点1', '呵呵') // 返回一个很像dom对象的对象.(虚拟dom/react对象)
+            
+        // 这是jsx写法(语法糖)
+         const h3 = (<h3>
+                <p>
+                  <span>测试</span>
+               </p>
+            </h3>)
+
+           ReactDOM.render(h3, document.getElementById('root'))
+    </script>
+</body>
+</html>
