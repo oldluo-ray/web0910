@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 使用react一般都会创建一个根标签,用来存放react创建出来的元素 -->
+    <div id="root"></div>
+
+    <!-- react是一个用于构件用户界面的js库 -->
+    <!-- react中的核心包,提供了react核心的方法 组件 React -->
+    <script src="./js/react.development.js"></script>
+    <!-- react中操作页面的包 ReactDOM -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- 用来解析jsx的包 -->
+    <script src="js/babel.min.js"></script>
+    <!-- 一定要在script标签上定义type属性,值为text/babel. 这样babel才会解析里面的代码 -->
+    <script type="text/babel">
+
+        // const div = React.createElement('div',{id: 'box'},'子节点的文本') // 返回的不是真实的dom,而是一个react元素(虚拟dom,长的像dom对象)
+
+
+        // 上面的方式,写起来太繁琐,所以一帮不适用上述写法.而是使用jsx语法糖
+
+        // 注意:在react中给标签添加属性,有些是特殊属性,比如className. 但是知道即可,因为浏览器会提示
+        let h3 = <h3 id="box" className="one"> <p>p标签</p> <span>测试</span> <label htmlFor="two"></label> </h3>
+
+        // 将虚拟dom渲染到页面上
+        ReactDOM.render(h3, document.getElementById('root'))
+
+
+
+    </script>
+</body>
+</html>

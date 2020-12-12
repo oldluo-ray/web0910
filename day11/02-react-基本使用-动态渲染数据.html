@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 使用react一般都会创建一个根标签,用来存放react创建出来的元素 -->
+    <div id="root"></div>
+
+    <!-- react是一个用于构件用户界面的js库 -->
+    <!-- react中的核心包,提供了react核心的方法 组件 React -->
+    <script src="./js/react.development.js"></script>
+    <!-- react中操作页面的包 ReactDOM -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- 用来解析jsx的包 -->
+    <script src="js/babel.min.js"></script>
+    <!-- 一定要在script标签上定义type属性,值为text/babel. 这样babel才会解析里面的代码 -->
+    <script type="text/babel">
+        // 1. 可以渲染什么
+        let username = '呵呵'
+        username = 1
+        username = true // 渲染布尔值,是没有意义的.所以不要去写,写了没有效果
+        username = ['a','b','c']
+        username = {name:'zs'} //注意: 插值表达式中可以传对象. 但是不允许直接渲染对象
+        username = function(){} // 插值表达式中不允许直接渲染函数,但是可以传入函数进来
+
+
+        username = <h3>标题</h3> // 也可以直接往插值表示式中传入react元素,会直接渲染出来
+
+        // 可以将一个存放了react元素的数组,直接渲染出来
+        // username = [<li>抽烟</li>,<li>喝酒</li>,<li>找富婆</li>]
+
+        // 在jsx中可以写 {} 插值表达式, 写了这个{}, react就会将{}里面的代码当做js去解析
+        // let div = <div>{username}</div>
+
+
+        //2. 插值表达式中可以传入什么
+        // 除了可以渲染的内容之外,{}还可以传入什么
+        // 可以传入任何的js表达式: 一段有结果的js代码
+        
+        // 字面量: 1 true 'abc' [] {} function(){}
+        // 变量: 变量返回变量里面存储的结果也是表达式
+        // 常量
+        // 三元运算: true ? 1 : 2 
+        // 与或非逻辑运算:   true && true 
+        // 基本运算:   + -  * / 
+
+
+        // if/for/while 这些语句只控制了代码如何执行,没有结果,不是表达式
+        //  let a = 123 // 这段代码不是表达式,因为这段代码只是声明了变量. 变量才是有结果的,是表达式
+
+
+        // 3. 条件渲染
+        // if 语句 / 三元运算 / 与或都 可以
+        // let div = true ? <div>可以</div> : <div>不可以</div>
+
+
+        // 4. 列表渲染
+        let arr = [{id: 1,name: '海静', age: 48, info: '光头'},{id: 2,name: '沛华', age: 8, info: '渣男'}]
+
+        // 在react中,实现列表渲染, 最终得到一个数组
+        // 实现: 遍历源数据数组,得到一个新的数组,新的数组中存放jsx. 直接渲染新的数组即可
+        const newArr = arr.map(item=>{
+            // 在map中,回调函数返回的结果就会添加到新的数组汇总
+            // key要求是一个不重复的值, 在当前这个数组中不重复即可. 可以使用下标,但是一般不用,因为如果数组发生删除操作,那么react底层执行的时候可能会出错
+            return (<li key={item.id}>
+                <h3>{item.name}</h3>
+                <div>{item.age}</div>
+                <p>{item.info}</p>
+              </li>)
+        })
+
+        let ul = <ul>
+            {newArr}
+            </ul>
+        ReactDOM.render(ul, document.getElementById('root'))
+
+
+
+    </script>
+</body>
+</html>
