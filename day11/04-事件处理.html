@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- 使用react一般都会创建一个根标签,用来存放react创建出来的元素 -->
+    <div id="root"></div>
+
+    <!-- react是一个用于构件用户界面的js库 -->
+    <!-- react中的核心包,提供了react核心的方法 组件 React -->
+    <script src="./js/react.development.js"></script>
+    <!-- react中操作页面的包 ReactDOM -->
+    <script src="./js/react-dom.development.js"></script>
+    <!-- 用来解析jsx的包 -->
+    <script src="js/babel.min.js"></script>
+    <!-- 一定要在script标签上定义type属性,值为text/babel. 这样babel才会解析里面的代码 -->
+    <script type="text/babel">
+
+        // 小结: 
+        // 1. 注册事件,直接在标签上写即可. 但是要写成小驼峰的形式
+        // 2. 可以接收事件对象,但是是一个react包装后的合成对象.默认打印看不到属性的值,可以使用e.persist()查看
+        // 3. this指向undefined. 使用e.target找到事件目标,事件目标是一个dom对象
+        // 4. a标签点击事件return false无效, 应该使用e.preventDefault()
+        
+        let div = <div className="box" onClick={function(e){
+            e.persist() // 就可以在控制台上看到事件对象的属性的值了
+            console.log(e) // 在react中叫合成事件 是react在原生事件对象的基础上,包装了一层
+            // 注意: 在jsx中注册事件,this指向的是undefined. 原因是代码被babel编译过了,被babel编译过的代码编程了严格模式.严格模式下,this就指向undefined
+            // console.log(this)
+            // 应该使用e.target找到事件目标,拿到的是一个dom对象
+            console.log(e.target.innerText)
+            console.log(e.clientX)
+
+        }}>hello react</div>
+
+        let link = <a href="http://www.baidu.com" onClick={(e)=>{
+            console.log(1111)
+            // 注意:在react中给a标签注册默认行为,不能使用return false 
+            // return false
+            e.preventDefault()
+        }}>a标签</a>
+        ReactDOM.render(link, document.getElementById('root'))
+
+    </script>
+</body>
+</html>
