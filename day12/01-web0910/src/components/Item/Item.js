@@ -6,7 +6,7 @@ export default class Item extends Component {
     return (
       <li>
         <label>
-          <input type='checkbox' checked={todo.isDone} />
+          <input type='checkbox' checked={todo.isDone} onChange={() => {}} />
           <span className={todo.isDone ? 'done' : ''}>{todo.name}</span>
         </label>
         <button className='btn btn-danger'>删除</button>

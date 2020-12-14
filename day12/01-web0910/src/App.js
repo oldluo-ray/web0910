@@ -29,11 +29,32 @@ class App extends React.Component {
       }
     ]
   }
+
+  // 在app组件中定义一个函数,用来接收header里面传过来的任务名称
+  getTodoName = todo => {
+    // console.log(todo)
+    // 根据任务名,创建一个任务对象
+    let todoObj = {
+      id: Date.now(),
+      name: todo,
+      isDone: false
+    }
+
+    // 因为react中不建议直接修改state.所以根据原来state的值,创建一个新的值
+    const newTodos = [...this.state.todos]
+    // 修改新的值
+    newTodos.push(todoObj)
+
+    // 调用setState
+    this.setState({
+      todos: newTodos
+    })
+  }
   render() {
     return (
       <div className='todo-container'>
         <div className='todo-wrap'>
-          <Header></Header>
+          <Header getTodoName={this.getTodoName}></Header>
           <List list={this.state.todos}></List>
           <Footer></Footer>
         </div>
