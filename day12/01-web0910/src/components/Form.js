@@ -38,12 +38,26 @@ export default class Form extends Component {
     })
   }
 
+  // 将上面的函数,封装成一个
+  // 高阶函数--> 函数柯里化
+  allHandle = name => e => {
+    let value = name === 'ischeck' ? e.target.checked : e.target.value
+    this.setState({
+      //1. 在这个函数体中,获取到要动态修改的属性是谁
+      //2. 判断要使用value还是checked
+      [name]: value
+    })
+  }
 
   render() {
     return (
       <div>
         文本框:
-        <input type='text' value={this.state.msg} onChange={this.handle} />
+        <input
+          type='text'
+          value={this.state.msg}
+          onChange={this.allHandle('msg')}
+        />
         文本域:
         <textarea
           name=''
@@ -51,10 +65,15 @@ export default class Form extends Component {
           cols='30'
           rows='10'
           value={this.state.info}
-          onChange={this.textHandle}
+          onChange={this.allHandle('info')}
         ></textarea>
         下拉框:
-        <select name='' id='' value={this.state.eat} onChange={this.sHandle}>
+        <select
+          name=''
+          id=''
+          value={this.state.eat}
+          onChange={this.allHandle('eat')}
+        >
           <option value='1'>泡面</option>
           <option value='2'>猪脚饭</option>
           <option value='3'>辣条</option>
@@ -63,7 +82,7 @@ export default class Form extends Component {
         <input
           type='checkbox'
           checked={this.state.ischeck}
-          onChange={this.chandle}
+          onChange={this.allHandle('ischeck')}
         />
       </div>
     )
