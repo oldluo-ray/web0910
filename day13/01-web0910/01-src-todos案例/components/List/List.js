@@ -6,11 +6,11 @@ import './List.css'
 
 export default class List extends Component {
   render() {
-    const { list, getIdDel } = this.props
+    const { list, getIdDel,getIdUpdate } = this.props
     return (
       <ul className='todo-main'>
         {list.map(item => {
-          return <Item key={item.id} todo={item} getIdDel={getIdDel}></Item>
+          return <Item key={item.id} todo={item} getIdDel={getIdDel} getIdUpdate={getIdUpdate}></Item>
         })}
       </ul>
     )
