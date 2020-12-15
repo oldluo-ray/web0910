@@ -16,6 +16,11 @@ class App extends React.Component {
         id: 1,
         name: '吃饭',
         isDone: true
+      },
+      {
+        id: 2,
+        name: '睡觉',
+        isDone: true
       }
     ]
   }
@@ -43,6 +48,22 @@ class App extends React.Component {
       todos: newTodos
     })
   }
+
+  // 定义一个函数,用来接收item中删除逻辑传递过来的id
+  getIdDel = id => {
+    // 根据id删除指定数据
+    let { todos } = this.state
+    // forEach, map, filter
+    // 返回一个新的数组,新数组存储着过滤之后剩余的数据
+    const arr = todos.filter((item, index) => {
+      // 这个回调函数,对应数组中每一条数据,第一次调用对应第一个数组, 第二次调用,对应第二条数据, 以此类推. 如果当前调用返回true,表示保留当前数据,如果返回false,表示删除当前数据
+      return item.id !== id
+    })
+
+    this.setState({
+      todos: arr
+    })
+  }
   render() {
     let { todos } = this.state
     return (
@@ -51,7 +72,7 @@ class App extends React.Component {
           <Header getTodoName={this.getTodoName}></Header>
           {todos.length ? (
             <div>
-              <List list={this.state.todos}></List>
+              <List list={this.state.todos} getIdDel={this.getIdDel}></List>
               <Footer></Footer>
             </div>
           ) : (
