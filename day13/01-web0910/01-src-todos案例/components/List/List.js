@@ -5,6 +5,7 @@ import Item from '../Item/Item'
 import './List.css'
 
 export default class List extends Component {
+  
   render() {
     const { list, getIdDel,getIdUpdate } = this.props
     return (
