@@ -1,11 +1,3 @@
-/**
- *  利用render props 技术定义的一个组件
- *
- *  render props 技术需要开发者定义一个组件,使用这个组件
- *
- *
- */
-
 import React, { Component } from 'react'
 
 export default class Position extends Component {
@@ -21,16 +13,18 @@ export default class Position extends Component {
     })
   }
 
-  // 在组件挂载的时候,监听鼠标移动事件
   componentDidMount() {
     window.addEventListener('mousemove', this.handleMove)
+    // window.onmousemove = this.handleMove
   }
 
   componentWillUnmount() {
     window.removeEventListener('mousemove', this.handleMove)
+    // window.onmousemove = null
   }
 
   render() {
-    return this.props.render(this.state)
+    // this.porps.children可以获取到当前组件子节点位置的值
+    return this.props.children(this.state)
   }
 }
