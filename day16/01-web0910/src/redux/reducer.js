@@ -8,7 +8,7 @@ export default function(state = initState, action) {
     case 'INCREMENT':
       return {
         ...state,
-        count: state.count + 1
+        count: state.count + action.data
       }
     default:
       return state
