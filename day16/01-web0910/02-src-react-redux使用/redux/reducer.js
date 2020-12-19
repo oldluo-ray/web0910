@@ -1,4 +1,3 @@
-import {INCREMENT} from './constants'
 let initState = {
   count: 0,
   msg: '默认值'
@@ -6,7 +5,7 @@ let initState = {
 
 export default function(state = initState, action) {
   switch (action.type) {
-    case INCREMENT:
+    case 'INCREMENT':
       return {
         ...state,
         count: state.count + action.data

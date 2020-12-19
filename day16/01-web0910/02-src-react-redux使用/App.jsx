@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import {Provider} from 'react-redux'
 import store from './redux/store'
 
-import WithTest from './container/TestContainer'
-import WithTest1 from './container/Test1Container'
+import Test from './components/Test'
+import Test1 from './components/Test1'
 
 export default class App extends Component {
   render() {
@@ -12,8 +12,8 @@ export default class App extends Component {
         <div>
           app根组件
         </div>
-        <WithTest></WithTest>
-        <WithTest1></WithTest1>
+        <Test></Test>
+        <Test1></Test1>
       </Provider>
       
     )

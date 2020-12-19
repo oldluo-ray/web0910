@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 class Test extends Component {
   render() {
@@ -10,5 +11,9 @@ class Test extends Component {
     )
   }
 }
-
-export default Test
+function fn(state) {
+  return {
+    msg: state.msg
+  }
+}
+export default connect(fn)(Test)
