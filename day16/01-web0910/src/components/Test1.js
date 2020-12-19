@@ -28,7 +28,7 @@ function fn(state) {
   console.log('fn-----', state)
   // return 的结果会加到props身上
   return {
-    num: state
+    num: state.count
   }
 }
 

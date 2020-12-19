@@ -1,7 +1,15 @@
-export default function(state = 0, action) {
+let initState = {
+  count: 0,
+  msg: '默认值'
+}
+
+export default function(state = initState, action) {
   switch (action.type) {
     case 'INCREMENT':
-      return state + 1
+      return {
+        ...state,
+        count: state.count + 1
+      }
     default:
       return state
   }
