@@ -4,8 +4,19 @@ import { connect } from 'react-redux'
 
 class Test1 extends Component {
   render() {
-    console.log(this.props)
-    return <div>test1组件</div>
+    return (
+      <div>
+        test1组件
+        <div>{this.props.num}</div>
+        <button
+          onClick={() => {
+            this.props.dispatch({ type: 'INCREMENT' })
+          }}
+        >
+          按钮
+        </button>
+      </div>
+    )
   }
 }
 
@@ -13,6 +24,8 @@ class Test1 extends Component {
 
 // state 就是redux中的最新的数据
 function fn(state) {
+  // 只要redux中数据发生变化了,这个fn就会被调用
+  console.log('fn-----', state)
   // return 的结果会加到props身上
   return {
     num: state
