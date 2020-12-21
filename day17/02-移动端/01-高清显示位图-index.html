@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-size: 100%;
+        }
+         .one {
+            background-image: url("imgs/logo.png");
+         }
+
+         @media screen and (-webkit-min-device-pixel-ratio: 2) {
+              .one {
+                background-image: url('./imgs/logo@2x.png');
+              }
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio: 3 ) {
+              .one {
+                background-image: url('./imgs/logo@3x.png');
+              }
+        }
+         
+
+
+    </style>
+</head>
+<body>
+    <div class="one"></div>    
+    <div class="two"></div> 
+    <script>
+        // console.log(window.devicePixelRatio)
+    </script>   
+    
+</body>
+</html>
