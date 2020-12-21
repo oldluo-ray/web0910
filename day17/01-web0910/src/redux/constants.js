@@ -1,1 +1,2 @@
 export const GETUSERSOK = 'GETUSERSOK'
+export const SETFILTER = 'SETFILTER'

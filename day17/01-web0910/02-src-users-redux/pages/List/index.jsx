@@ -31,29 +31,11 @@ export default class List extends Component {
   componentWillUnmount() {
     PubSub.unsubscribe(this.token)
   }
-
-  // 按钮的事件处理函数
-  handle = filter => () => {
-
-    // 修改redux中filter属性的值
-    this.props.setFilter(filter)
-
-  }
   render() {
  
-    let { users,filter } = this.props
-
-    // 判断filter是否是ray.如果是ray,就只展示ray的数据
-    if(filter === 'ray'){
-      users = users.filter(item=>{
-        return item.login === 'ray'
-      })
-    }
+    let { users } = this.props
     if (users.length) {
       return (
-        <>
-        <button onClick={this.handle('ray')}>ray</button>
-        <button onClick={this.handle('all')}>all</button>
         <div className='row'>
           {users.map(user => (
             <div className='card' key={user.id}>
@@ -67,7 +49,6 @@ export default class List extends Component {
             </div>
           ))}
         </div>
-        </>
       )
     }
 

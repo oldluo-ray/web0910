@@ -1,8 +1,10 @@
-import { GETUSERSOK } from './constants'
-const initState = {
+import { combineReducers } from 'redux'
+import { GETUSERSOK, SETFILTER } from './constants'
+
+const inituserState = {
   users: []
 }
-export default function fn(state = initState, action) {
+function users(state = inituserState, action) {
   switch (action.type) {
     case GETUSERSOK:
       return {
@@ -13,3 +15,25 @@ export default function fn(state = initState, action) {
       return state
   }
 }
+
+let initfilterState = {
+  filter: 'all'
+}
+function filter(state = initfilterState, action) {
+  switch (action.type) {
+    case SETFILTER:
+      return {
+        ...state,
+        filter: action.data
+      }
+    default:
+      return state
+  }
+}
+
+const rootReducer = combineReducers({
+  users,
+  filter
+})
+
+export default rootReducer

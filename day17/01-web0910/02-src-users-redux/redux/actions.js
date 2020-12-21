@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GETUSERSOK, SETFILTER } from './constants'
+import { GETUSERSOK } from './constants'
 
 // 同步
 function getUsers(data) {
@@ -23,9 +23,4 @@ export function getUsersAsync(data) {
       dispatch(getUsers(res.data.items))
     })
   }
-}
-
-// 修改filter的同步action
-export function setFilter(data) {
-  return { type: SETFILTER, data }
 }
