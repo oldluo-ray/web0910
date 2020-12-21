@@ -1,26 +1,26 @@
-import { INCREMENT, ASYNCINCREMENT } from './constants'
-// action对象  {type: ....}
+import axios from 'axios'
+import { GETUSERSOK } from './constants'
 
-// actionCreator
-function incre(data) {
-  return { type: INCREMENT, data }
+// 同步
+function getUsers(data) {
+  return { type: GETUSERSOK, data }
 }
 
-// // 异步增加的actionCreator
-// function asyncincre(data) {
-//   return { type: ASYNCINCREMENT, data }
-// }
-
-// 如果使用了redux-thunk这个中间件,那么我们就可以在redux中实现异步操作了,但是redux-thunk按照要求,异步的操作要写在actions.js文件中.要定义一个异步action的函数
-function asyncincre() {
+//异步action
+export function getUsersAsync(data) {
   return dispatch => {
-    // 异步操作,异步操作成功之后,盗用dispatch
-    setTimeout(() => {
-      dispatch(incre(7))
-    }, 1000)
+    // 执行异步操作
+    //发送异步请求
+    axios({
+      url: 'http://localhost:5000/search/users',
+      method: 'get',
+      params: {
+        data
+      }
+    }).then(res => {
+      console.log(res)
+      // 异步成功了,拿到数据了
+      dispatch(getUsers(res.data.items))
+    })
   }
 }
-
-export { incre, asyncincre }
-
-//review

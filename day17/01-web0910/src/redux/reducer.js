@@ -1,15 +1,13 @@
-import { INCREMENT, ASYNCINCREMENT } from './constants'
-let initState = {
-  count: 0,
-  msg: '默认值'
+import { GETUSERSOK } from './constants'
+const initState = {
+  users: []
 }
-
-export default function(state = initState, action) {
+export default function fn(state = initState, action) {
   switch (action.type) {
-    case INCREMENT:
+    case GETUSERSOK:
       return {
         ...state,
-        count: state.count + action.data
+        users: action.data
       }
     default:
       return state

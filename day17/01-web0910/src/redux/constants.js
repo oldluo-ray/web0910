@@ -1,2 +1,1 @@
-export const INCREMENT = 'INCREMENT'
-export const ASYNCINCREMENT = 'ASYNCINCREMENT'
+export const GETUSERSOK = 'GETUSERSOK'
