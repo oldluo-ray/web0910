@@ -4,19 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Document</title>
-    <style>
+    <!-- <style>
         * {
             margin: 0;
             padding: 0;
         }
 
-        div {
+        /* 方式一:  */
+        /* div {
             width: 3.45rem;
             height: 1.5rem;
             margin: 0.15rem;
             background-color: red;
+        } */
+        /* 方式二:  */
+        div {
+            width: 9.2rem;
+            height: 4rem;
+            margin: 0.4rem;
+            background-color: red;
         }
-    </style>
+    </style> -->
+
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
     <div></div>
@@ -25,9 +35,20 @@
         // 适配方案1: 
         // 1. 计算当前设备的跟字体大小   当前设备独立像素宽度 * 100 / 设计稿宽度
         // 2. 写样式的值: 用设计稿的值 / 100 ,单位使用rem
+        // function fn(){
+        //     const rootFontSize = document.documentElement.clientWidth * 100 / 375
+        // document.documentElement.style.fontSize = rootFontSize + 'px'
+        // }
+        // fn()
+        // window.onresize = fn
+
+        // 适配方案2: 
+        // 1. 计算跟字体: 当前设备独立像素宽度 / 10
+        // 2. 计算具体rem的值: 设计值/设计稿宽度 / 10
+
         function fn(){
-            const rootFontSize = document.documentElement.clientWidth * 100 / 375
-        document.documentElement.style.fontSize = rootFontSize + 'px'
+            const rootFontSize = document.documentElement.clientWidth / 10
+            document.documentElement.style.fontSize = rootFontSize+'px'
         }
 
         fn()
