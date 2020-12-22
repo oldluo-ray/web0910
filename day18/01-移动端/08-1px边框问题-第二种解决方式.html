@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 3.45rem;
+            height: 1.5rem;
+            margin: 0.15rem;
+            background-color: red;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        console.log(window.devicePixelRatio);
+         function fn(){
+            const rootFontSize = document.documentElement.clientWidth * 100 / 375
+        document.documentElement.style.fontSize = rootFontSize + 'px'
+        }
+        fn()
+        window.onresize = fn
+
+
+        // 修改开启理想视口的meta标签,根据当前设备像素比,让布局视口对应变大
+        // 获取meta标签
+        const viewport = document.querySelector('meta[name=viewport]')
+        // 计算应该变大多少(修改的是initial-scale的值)
+        const scale = 1 / window.devicePixelRatio
+        viewport.setAttribute('content', 'width=device-width,initial-scale='+scale)
+        // console.log(viewport)
+        // console.log(document.documentElement.clientWidth)
+
+        // 让根字体变大,从而让盒子变大.恢复到一个正常布局状态
+        // document.documentElement.style.fontSize =document.documentElement.style
+
+        // console.log();
+        const res = parseInt(document.documentElement.style.fontSize)
+        document.documentElement.style.fontSize = res * window.devicePixelRatio + 'px'
+    </script>
+</body>
+</html>

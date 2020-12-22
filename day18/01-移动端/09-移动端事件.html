@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        // window.ontouchstart = function(){
+        //     console.log('手指触摸屏幕了---window')
+        // }
+        // window.ontouchmove = function(){
+        //     console.log('手指在屏幕上移动---window')
+        // }
+
+        // window.ontouchend = function(){
+        //     console.log('手指离开屏幕了---window')
+        // }
+
+        let start ;
+        box.ontouchstart = function(){
+            console.log('手指触摸屏幕了---元素')
+            start = Date.now()
+        }   
+        // box.ontouchmove = function(){
+        //     console.log('手指在屏幕上移动---元素')
+        // }
+
+        // box.ontouchend = function(){
+        //     console.log('手指离开屏幕了---元素')
+        // }
+
+
+        box.onclick = function(){
+            let end = Date.now()
+            console.log('click事件触发了')
+            console.log(end - start)
+        }
+
+
+    
+    </script>
+</body>
+</html>
