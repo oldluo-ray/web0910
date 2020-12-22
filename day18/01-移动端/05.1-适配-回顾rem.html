@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 20px;
+        }
+        .far {
+            font-size: 20px;
+        }
+
+        .son {
+            width: 10em; /*em最终转成px渲染,要根据直接父元素的字体大小进行换算 
+            em * fz ==> px */
+            height: 10rem; /*rem最终转成px渲染, 根据根元素(html)的字体大小进行换算
+            rem * fz ==> px
+            */
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="far">
+        <div class="son"></div>
+    </div>
+</body>
+</html>

@@ -40,7 +40,6 @@ export default class List extends Component {
 
   }
   render() {
- 
     let { users,filter } = this.props
 
     // 判断filter是否是ray.如果是ray,就只展示ray的数据

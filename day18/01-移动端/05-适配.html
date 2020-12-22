@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 3.45rem;
+            height: 1.5rem;
+            margin: 0.15rem;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <script>
+        // 适配方案1: 
+        // 1. 计算当前设备的跟字体大小   当前设备独立像素宽度 * 100 / 设计稿宽度
+        // 2. 写样式的值: 用设计稿的值 / 100 ,单位使用rem
+        function fn(){
+            const rootFontSize = document.documentElement.clientWidth * 100 / 375
+        document.documentElement.style.fontSize = rootFontSize + 'px'
+        }
+
+        fn()
+
+        window.onresize = fn
+
+    </script>
+</body>
+</html>

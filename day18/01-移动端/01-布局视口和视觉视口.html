@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Document</title>
+    <style>
+        div {
+            font-size: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <script>
+        // PC端获取视口的方式/和移动端获取视口的方式都是下面的代码: 
+        console.log(document.documentElement.clientWidth)
+        // 移动端视觉视口
+        console.log(window.innerWidth)
+
+
+        const box1 = document.getElementById('box1')
+        const box2 = document.getElementById('box2')
+
+        box1.innerText = '布局视口: ' + document.documentElement.clientWidth
+        box2.innerText = '视觉视口: ' + window.innerWidth
+        
+
+
+    </script>
+</body>
+</html>

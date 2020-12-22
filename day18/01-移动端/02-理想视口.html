@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 默认情况下:移动端的布局视口是 980 
+    
+        如果开启了理想视口, 布局视口就会变化: 
+        开启理想视口之后,布局视口的宽度,就变成了当前设备独立像素的宽度
+    -->
+    <!-- 用于开启理想视口 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 345px;
+            height:150px;
+            margin: 15px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    
+    <script>
+        const box1 = document.getElementById('box1')
+        console.log(document.documentElement.clientWidth);
+
+
+
+
+
+
+    </script>
+</body>
+</html>

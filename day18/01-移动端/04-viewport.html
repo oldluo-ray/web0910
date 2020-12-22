@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- 
+        name=viewport 表示要控制移动端视口了. 
+        conent里面的值就是具体控制视口的配置项
+        配置项: 
+        - width: 控制移动端布局视口的宽度.
+            取值可以是数字,写多少布局视口就是多少
+            取值可以是device-width ==> 布局视口的宽度就是当前设备独立像素的宽度
+        - initial-scale(初始缩放值): 实际上也是控制布局视口的宽度 
+            scale = 屏幕宽度(设备独立像素)  /  布局视口宽度。
+        注意: 如果width和initial-scale值冲突了,谁的值听谁的
+
+     -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <p id="one"></p>
+    <p id="two"></p>
+    <script>
+       console.log(document.documentElement.clientWidth);
+       
+    </script>
+</body>
+</html>
