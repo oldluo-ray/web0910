@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        // window.ontouchstart = function(){
+        //     console.log('手指触摸屏幕了---window')
+        // }
+        // window.ontouchmove = function(){
+        //     console.log('手指在屏幕上移动---window')
+        // }
+
+        // window.ontouchend = function(){
+        //     console.log('手指离开屏幕了---window')
+        // }
+
+       
+        // - changedTouches 改变的触点 在touchend中可以获取到离开的触点
+        // - targetTouches 元素上的触点
+        // - touches 屏幕上的触点
+
+        box.ontouchstart = function(e){
+            console.log('手指触摸屏幕了---元素')
+            console.log(e)
+          
+        }   
+        box.ontouchmove = function(e){
+            console.log('手指在屏幕上移动---元素')
+        }
+
+        box.ontouchend = function(e){
+            console.log('手指离开屏幕了---元素')
+            console.log(e)
+        }
+
+
+        
+        
+    
+    </script>
+</body>
+</html>

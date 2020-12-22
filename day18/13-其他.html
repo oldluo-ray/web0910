@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="box" style="border:1px solid blue"></div>
+
+    <script>
+
+        const div = document.getElementById('box')
+
+        // 获取div的样式
+        console.log(div.style.border) //只能获取行内样式
+
+        // 获取背景颜色
+        const styleObj = getComputedStyle(div)
+        console.log(styleObj.width)
+        console.log(styleObj.height)
+        console.log(styleObj.backgroundColor)
+        console.log(styleObj.border)
+    </script>
+</body>
+</html>

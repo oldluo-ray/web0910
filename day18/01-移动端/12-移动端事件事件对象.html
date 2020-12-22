@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <p id="one"></p>
+    <p id="two"></p>
+    <script>
+        const box =document.getElementById('box')
+        const p1 =document.getElementById('one')
+        const p2 =document.getElementById('two')
+        window.ontouchstart = function(e){
+            p1.innerText = '屏幕上手指个数: ' + e.touches.length
+        }
+        box.ontouchstart = function(e){
+             p2.innerText = '元素上手指个数: '+ e.targetTouches.length
+        }   
+
+        window.ontouchend = function(e){
+            p1.innerText = '屏幕上手指个数: ' + e.touches.length
+        }
+        box.ontouchend= function(e){
+             p2.innerText = '元素上手指个数: '+ e.targetTouches.length
+        }   
+       
+
+
+       
+
+
+    
+    </script>
+</body>
+</html>

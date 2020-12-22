@@ -35,11 +35,17 @@
       h1 {
         margin-top: 100px;
       }
+
+      a {
+        /* 让a标签失去点击事件 */
+        /* pointer-events: none;  */
+      }
     </style>
   </head>
   <body>
     <div id="app">
-      <a href="https://www.baidu.com">
+      <a  id="link" href="https://www.baidu.com">
+      <!-- <a id="link"> -->
         <div id="banner"></div>
       </a>
       <div id="shade">
@@ -51,9 +57,24 @@
       const btn = document.getElementById('btn')
       const shade = document.getElementById('shade')
       btn.addEventListener('touchstart', (e) => {
-        shade.style.display = 'none'
-        e.preventDefault() // 这里执行了阻止默认事件的代码,click事件就不会触发了
+        setTimeout(() => {
+          shade.style.display = 'none'
+        }, 500);
+        
+        // e.preventDefault() // 这里执行了阻止默认事件的代码,click事件就不会触发了
+
+        // setTimeout(() => {
+        //     link.style.pointerEvents = 'auto'
+        // }, 500);
       })
+
+      // link.ontouchstart = function(){
+      //   // 直接修改浏览器地址栏,然后根据地址发送请求
+      //    window.location.href = 'http://www.baidu.com'
+      // }
+
+
+
     </script>
   </body>
 </html>
