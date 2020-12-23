@@ -12,6 +12,9 @@ import { lazy } from 'react'
 // 注意: 要配合suspense组件使用.否则会报错
 const Home = lazy(() => import('../pages/Home/Home'))
 const Login = lazy(() => import('../pages/Login/Login'))
+const RegisterPhone = lazy(() =>
+  import('../pages/Register/RegisterPhone/RegisterPhone')
+)
 
 // 路由表
 const routeArr = [
@@ -27,6 +30,10 @@ const routeArr = [
   {
     path: '/login',
     component: Login
+  },
+  {
+    path: '/register/phone',
+    component: RegisterPhone
   }
 ]
 

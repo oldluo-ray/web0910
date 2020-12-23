@@ -2,12 +2,10 @@
   margin: 0;
   padding: 0;
 }
-
 html,
 body {
   height: 100%;
 }
-
 #root {
   height: 100%;
 }
@@ -15,36 +13,30 @@ body {
   height: 100%;
   background-color: #fff;
 }
-
 .icon-left {
   color: #000;
 }
-
 .inp-left {
   display: flex;
   align-items: center;
 }
-
 .inp-code {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
 }
-
 .inp-code button {
   border: none;
   background-color: #fff;
   color: #999;
-  border-left: 1px solid #999;
+  border-left: 1px solid #999; /*no*/
   padding-left: 15px;
   height: 30px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
-
 .login-btn {
+  margin-top: 20px;
   border-radius: 25px !important;
 }
-
 .login-link {
   margin-top: 20px;
   display: flex;
@@ -53,7 +45,6 @@ body {
 .login-link a {
   color: #999;
 }
-
 .login-line {
   display: flex;
   align-items: center;
@@ -67,7 +58,6 @@ body {
   width: 100px;
   background-color: #ccc;
 }
-
 .login-oauth {
   display: flex;
   justify-content: center;
@@ -93,7 +83,6 @@ body {
   margin: 0 20px;
   background-color: hsl(207, 70%, 69%);
 }
-
 .login-copyright {
   margin-top: 50px;
   text-align: center;

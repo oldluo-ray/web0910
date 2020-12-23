@@ -36,7 +36,17 @@ export default class Login extends Component {
           <WingBlank>
             <div className='login-link'>
               <a href='#'>账号密码登录</a>
-              <a href='#'>手机快速注册</a>
+              <a
+                href='#'
+                onClick={e => {
+                  this.props.history.replace('/register/phone', {
+                    from: '/login'
+                  })
+                  e.preventDefault()
+                }}
+              >
+                手机快速注册
+              </a>
             </div>
           </WingBlank>
           <WingBlank>
