@@ -2,3 +2,25 @@
   margin: 0;
   padding: 0;
 }
+
+html,
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+.wrap {
+  height: 100%;
+  background-color: #fff;
+}
+
+.icon-left {
+  color: #000;
+}
+
+.inp-left {
+  display: flex;
+  align-items: center;
+}
