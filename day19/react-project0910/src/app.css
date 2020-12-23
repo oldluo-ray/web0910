@@ -24,3 +24,77 @@ body {
   display: flex;
   align-items: center;
 }
+
+.inp-code {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.inp-code button {
+  border: none;
+  background-color: #fff;
+  color: #999;
+  border-left: 1px solid #999;
+  padding-left: 15px;
+  height: 30px;
+  margin-left: 20px;
+}
+
+.login-btn {
+  border-radius: 25px !important;
+}
+
+.login-link {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.login-link a {
+  color: #999;
+}
+
+.login-line {
+  display: flex;
+  align-items: center;
+  margin-top: 60px;
+  justify-content: space-between;
+  color: #ccc;
+}
+
+.login-line .line {
+  height: 1px;
+  width: 100px;
+  background-color: #ccc;
+}
+
+.login-oauth {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.login-oauth div {
+  font-size: 40px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+}
+.login-oauth div.icon-wechat {
+  margin: 0 20px;
+  background-color: hsl(101, 57%, 53%);
+}
+.login-oauth div.icon-github {
+  margin: 0 20px;
+  background-color: hsl(120, 1%, 62%);
+}
+.login-oauth div.icon-qq {
+  margin: 0 20px;
+  background-color: hsl(207, 70%, 69%);
+}
+
+.login-copyright {
+  margin-top: 50px;
+  text-align: center;
+}
