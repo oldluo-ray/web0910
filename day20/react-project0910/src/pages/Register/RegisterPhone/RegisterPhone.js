@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
-import { NavBar, Icon, InputItem, WingBlank, Button, Modal } from 'antd-mobile'
+import {
+  NavBar,
+  Icon,
+  InputItem,
+  WingBlank,
+  Button,
+  Modal,
+  Toast
+} from 'antd-mobile'
 //做表单校验的包
 import { createForm } from 'rc-form'
+
+// 导入异步请求函数
+import { verifyPhone } from '../../../api/register'
 
 class RegisterPhone extends Component {
   state = {
@@ -50,8 +61,40 @@ class RegisterPhone extends Component {
   }
 
   // 点击下一步的事件处理函数
-  handleVerifyPhone = () => {
+  handleVerifyPhone = async () => {
     // console.log('触发了')
+    // 获取到用户输入的手机号,然后发送给后台,判断是否注册过
+    // 问题: 在这个函数中,要获取用户输入的手机号(表单项中的内容)
+    // getFieldValue这个函数可以获取到表单项中的值
+    const { getFieldValue } = this.props.form
+    const phone = getFieldValue('phone')
+    //发送异步请求
+    const res = await verifyPhone(phone)
+    // console.log(res)
+    //判断手机号是否存在
+    if (res.data.success) {
+      // 手机号不存在
+      Modal.alert('', '我们将发送短信/语音验证码至:' + phone, [
+        {
+          text: '取消'
+        },
+        {
+          text: '确认',
+          style: { backgroundColor: 'red', color: '#fff' },
+          onPress: () => {
+            this.props.history.replace('/register/code')
+          }
+        }
+      ])
+    } else {
+      // 手机号存在
+      //提示用户,返回login页面
+      Toast.info(res.data.message)
+
+      setTimeout(() => {
+        this.props.history.replace('/login')
+      }, 2000)
+    }
   }
   render() {
     // 因为当前组件已经被createForm生成的组件包裹了,所以可以通过props直接获取到一个form对象. 从form对象身上,可以结构一个getFieldProps函数,可以用来获取表单项的值,并且进行校验
