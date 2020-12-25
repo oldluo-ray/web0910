@@ -82,6 +82,10 @@ class RegisterPhone extends Component {
           text: '确认',
           style: { backgroundColor: 'red', color: '#fff' },
           onPress: () => {
+            // 由于手机号,很多页面都要使用,所以为了方便,直接将手机号存储到本地缓存中
+
+            // 注意: localstorage中只能存字符串,如果要存对象,先解析成字符串,再存
+            localStorage.setItem('phone', phone)
             this.props.history.replace('/register/code')
           }
         }

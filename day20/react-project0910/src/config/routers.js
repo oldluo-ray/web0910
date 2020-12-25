@@ -15,6 +15,7 @@ const Login = lazy(() => import('../pages/Login/Login'))
 const RegisterPhone = lazy(() =>
   import('../pages/Register/RegisterPhone/RegisterPhone')
 )
+const RegisterCode = lazy(() => import('../pages/Register/RegisterCode'))
 
 // 路由表
 const routeArr = [
@@ -34,6 +35,10 @@ const routeArr = [
   {
     path: '/register/phone',
     component: RegisterPhone
+  },
+  {
+    path: '/register/code',
+    component: RegisterCode
   }
 ]
 
