@@ -12,6 +12,7 @@ import {
 import { createForm } from 'rc-form'
 
 import { sendCode } from '../../../api/login'
+import { verifyCode } from '../../../api/register'
 import './index.css'
 import msg from './msg.png'
 class RegisterCode extends Component {
@@ -77,7 +78,21 @@ class RegisterCode extends Component {
   }
 
   // 发送请求验证验证码是否正确
-  handleVerifyCode = () => {}
+  handleVerifyCode = async () => {
+    // phone,code
+    const phone = localStorage.getItem('phone')
+    // 通过rc-form的getFieldValue('字段名')获取表单的值
+    const code = this.props.form.getFieldValue('code')
+
+    // console.log(phone, code)
+
+    const res = await verifyCode(phone, code)
+    // console.log(res)
+    if (res.data.success) {
+      //跳转到注册密码页面.输入密码
+      this.props.history.replace('/register/password')
+    }
+  }
   render() {
     const { getFieldProps } = this.props.form
     return (
