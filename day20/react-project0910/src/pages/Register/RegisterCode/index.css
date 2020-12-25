@@ -27,6 +27,11 @@
   border-radius: 44px;
 }
 
+.code-btn.active {
+  background-color: red;
+  color: #fff;
+}
+
 .code-next {
   margin-top: 40px;
   border-radius: 22px;
