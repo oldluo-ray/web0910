@@ -1,0 +1,19 @@
+.country-constainer {
+  width: 375px;
+}
+
+.country-constainer .am-list-body {
+  padding-right: 20px;
+}
+
+.country-nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 2px;
+  top: 90px;
+  z-index: 99999999999999999;
+}
+.country-nav a {
+  margin-top: 8px;
+}

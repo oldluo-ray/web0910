@@ -4,6 +4,18 @@ import React, { Component } from 'react'
 import { NavBar, Icon, InputItem, WingBlank, Button } from 'antd-mobile'
 
 export default class Login extends Component {
+  state = {
+    country: '+86'
+  }
+  componentDidMount() {
+    if (this.props.location.state) {
+      const country = this.props.location.state.country
+      this.setState({
+        country
+      })
+    }
+  }
+
   render() {
     return (
       <div className='wrap'>
@@ -17,7 +29,14 @@ export default class Login extends Component {
         <WingBlank>
           <InputItem clear placeholder='请输入手机号'>
             <div className='inp-left'>
-              <span>+86</span>&nbsp;
+              <span
+                onClick={() => {
+                  this.props.history.replace('/country')
+                }}
+              >
+                {this.state.country}
+              </span>
+              &nbsp;
               <Icon type='down'></Icon>
             </div>
           </InputItem>
@@ -57,7 +76,13 @@ export default class Login extends Component {
             </div>
           </WingBlank>
           <div className='login-oauth'>
-            <div className='iconfont icon-github'></div>
+            <div
+              className='iconfont icon-github'
+              onClick={() => {
+                window.location.href =
+                  'https://github.com/login/oauth/authorize?client_id=c1e7c49c50d1f3b52105'
+              }}
+            ></div>
             <div className='iconfont icon-wechat'></div>
             <div className='iconfont icon-qq'></div>
           </div>

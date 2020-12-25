@@ -19,6 +19,7 @@ const RegisterCode = lazy(() => import('../pages/Register/RegisterCode'))
 const RegisterPassword = lazy(() =>
   import('../pages/Register/RegisterPassword')
 )
+const Country = lazy(() => import('../pages/Country'))
 
 // 路由表
 const routeArr = [
@@ -46,6 +47,10 @@ const routeArr = [
   {
     path: '/register/password',
     component: RegisterPassword
+  },
+  {
+    path: '/country',
+    component: Country
   }
 ]
 
