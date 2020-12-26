@@ -53,7 +53,10 @@
         //如果res是一个具体的值,就直接传递下去,如果res是一个promise对象,就传递promise的结果
         if (res instanceof Promise) {
           //是promise实例
-          resolve(res.result)
+          // 完整写法:
+          //   res.then((v)=>resolve(v),e=>reject(e))
+          // 简写形式
+          res.then(resolve, reject)
         } else {
           //不是promise实例
           resolve(res)
@@ -63,7 +66,7 @@
         //如果res是一个具体的值,就直接传递下去,如果res是一个promise对象,就传递promise的结果
         if (res instanceof Promise) {
           //是promise实例
-          reject(res.result)
+          res.then(resolve, reject)
         } else {
           //不是promise实例
           reject(res)
