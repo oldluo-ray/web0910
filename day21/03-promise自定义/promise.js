@@ -24,8 +24,10 @@
 
       //成功了,在这里调用then函数中的第一个参数(onResolved)
       // 注意: 因为有可能then被调用多次,所以遍历数组,从数组中,拿到所有的成功,然后调用
-      this.container.forEach(item => {
-        item.onResolved(this.result)
+      setTimeout(() => {
+        this.container.forEach(item => {
+          item.onResolved(this.result)
+        })
       })
     }
 
@@ -34,9 +36,11 @@
       if (this.state !== PENDING) return
       this.state = REJECTED
       this.result = error
-      // 失败了,在这里调用then函数的第二个参数(onRejected)
-      this.container.forEach(item => {
-        item.onRejected(this.result)
+      setTimeout(() => {
+        // 失败了,在这里调用then函数的第二个参数(onRejected)
+        this.container.forEach(item => {
+          item.onRejected(this.result)
+        })
       })
     }
 
@@ -48,33 +52,44 @@
   window.Promise.prototype.then = function(onResolved, onRejected) {
     return new Promise((resolve, reject) => {
       // 如果执行到then函数的时候,状态已经变了,就立刻执行成功或失败的回调
+      const handle = target => {
+        try {
+          const res = target(this.result)
+          //如果res是一个具体的值,就直接传递下去,如果res是一个promise对象,就传递promise的结果
+          if (res instanceof Promise) {
+            //是promise实例
+            // 完整写法:
+            //   res.then((v)=>resolve(v),e=>reject(e))
+            // 简写形式
+            res.then(resolve, reject)
+          } else {
+            //不是promise实例
+            resolve(res)
+          }
+        } catch (error) {
+          reject(error)
+        }
+      }
+
       if (this.state === RESOLVED) {
-        const res = onResolved(this.result)
-        //如果res是一个具体的值,就直接传递下去,如果res是一个promise对象,就传递promise的结果
-        if (res instanceof Promise) {
-          //是promise实例
-          // 完整写法:
-          //   res.then((v)=>resolve(v),e=>reject(e))
-          // 简写形式
-          res.then(resolve, reject)
-        } else {
-          //不是promise实例
-          resolve(res)
-        }
+        setTimeout(() => {
+          handle(onResolved)
+        })
       } else if (this.state === REJECTED) {
-        const res = onRejected(this.result)
-        //如果res是一个具体的值,就直接传递下去,如果res是一个promise对象,就传递promise的结果
-        if (res instanceof Promise) {
-          //是promise实例
-          res.then(resolve, reject)
-        } else {
-          //不是promise实例
-          reject(res)
-        }
+        setTimeout(() => {
+          handle(onRejected)
+        })
       } else {
         // 如果执行then的时候,promise状态还是pending,就把
         // onResolved, onRejected添加到promise实例身上
-        this.container.push({ onResolved, onRejected })
+        this.container.push({
+          onResolved: () => {
+            handle(onResolved)
+          },
+          onRejected: () => {
+            handle(onRejected)
+          }
+        })
       }
     })
   }
