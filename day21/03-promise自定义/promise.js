@@ -46,15 +46,33 @@
 
   // then函数,添加到原型上
   window.Promise.prototype.then = function(onResolved, onRejected) {
-    // 如果执行到then函数的时候,状态已经变了,就立刻执行成功和失败的回调
-    if (this.state === RESOLVED) {
-      onResolved(this.result)
-    } else if (this.state === REJECTED) {
-      onRejected(this.result)
-    } else {
-      // 如果执行then的时候,promise状态还是pending,就把
-      // onResolved, onRejected添加到promise实例身上
-      this.container.push({ onResolved, onRejected })
-    }
+    return new Promise((resolve, reject) => {
+      // 如果执行到then函数的时候,状态已经变了,就立刻执行成功或失败的回调
+      if (this.state === RESOLVED) {
+        const res = onResolved(this.result)
+        //如果res是一个具体的值,就直接传递下去,如果res是一个promise对象,就传递promise的结果
+        if (res instanceof Promise) {
+          //是promise实例
+          resolve(res.result)
+        } else {
+          //不是promise实例
+          resolve(res)
+        }
+      } else if (this.state === REJECTED) {
+        const res = onRejected(this.result)
+        //如果res是一个具体的值,就直接传递下去,如果res是一个promise对象,就传递promise的结果
+        if (res instanceof Promise) {
+          //是promise实例
+          reject(res.result)
+        } else {
+          //不是promise实例
+          reject(res)
+        }
+      } else {
+        // 如果执行then的时候,promise状态还是pending,就把
+        // onResolved, onRejected添加到promise实例身上
+        this.container.push({ onResolved, onRejected })
+      }
+    })
   }
 })()
