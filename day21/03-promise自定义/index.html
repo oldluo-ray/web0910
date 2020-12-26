@@ -9,22 +9,30 @@
     <script src="promise.js"></script>
     <script>
         const p1 = new Promise((resolve,reject)=>{
-            // setTimeout(()=>{
+            setTimeout(()=>{
                 
-                // resolve('成功')
+                resolve('成功')
                 reject('失败')
           
-            // },1000)  
+            },3000)  
         })
 
-        console.log(p1);
 
-        // p1.then((v)=>{
-        //     console.log(1, v)
-        // },
-        // (e)=>{
-        //     console.log(e)
-        // })
+     
+            p1.then((v)=>{
+                console.log(1, v)
+            },
+            (e)=>{
+                console.log(1,e)
+            })
+
+            p1.then((v)=>{
+                console.log(2, v)
+            },
+            (e)=>{
+                console.log(2,e)
+            })
+     
     </script>
 </body>
 </html>
